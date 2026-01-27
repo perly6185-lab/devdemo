@@ -5,10 +5,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class HelloController {
-
+   @GetMapping("/hello2")
+    public String hello2() {
+        return "Hello from DevAgent Demo!";
+    }
     @GetMapping("/hello")
     public String hello() {
-        return "Hello from DevAgent Demo!";
+        return "Hello";
     }
 
     @GetMapping("/health")
