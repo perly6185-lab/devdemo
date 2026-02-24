@@ -19,7 +19,7 @@ class HelloControllerTest {
     void helloShouldReturnMessage() throws Exception {
         mockMvc.perform(get("/hello"))
                 .andExpect(status().isOk())
-                .andExpect(content().string("Hello from DevAgent Demo!"));
+                .andExpect(content().string("hello,i love you !"));
     }
 
     @Test
