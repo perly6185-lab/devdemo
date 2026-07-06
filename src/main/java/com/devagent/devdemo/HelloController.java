@@ -1,6 +1,7 @@
 package com.devagent.devdemo;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -10,8 +11,11 @@ public class HelloController {
         return "Hello from DevAgent Demo!";
     }
     @GetMapping("/hello")
-    public String hello() {
-        return "Hello";
+    public String hello(@RequestParam(required = false) String name) {
+        if (name != null) {
+            return "Hello, " + name + "! (from DevAgent Demo)";
+        }
+        return "Hello from DevAgent Demo!";
     }
 
     @GetMapping("/health")

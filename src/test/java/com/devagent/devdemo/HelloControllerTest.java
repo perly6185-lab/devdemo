@@ -23,6 +23,13 @@ class HelloControllerTest {
     }
 
     @Test
+    void helloWithNameShouldReturnPersonalizedMessage() throws Exception {
+        mockMvc.perform(get("/hello").param("name", "Ada"))
+                .andExpect(status().isOk())
+                .andExpect(content().string("Hello, Ada! (from DevAgent Demo)"));
+    }
+
+    @Test
     void healthShouldReturnOk() throws Exception {
         mockMvc.perform(get("/health"))
                 .andExpect(status().isOk())
