@@ -49,4 +49,11 @@ class HelloControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(content().string("pong"));
     }
+
+    @Test
+    void versionShouldReturnV1() throws Exception {
+        mockMvc.perform(get("/version"))
+                .andExpect(status().isOk())
+                .andExpect(content().string("v1"));
+    }
 }

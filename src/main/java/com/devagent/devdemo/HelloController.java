@@ -32,4 +32,9 @@ public class HelloController {
     public String ping() {
         return "pong";
     }
+
+    @GetMapping("/version")
+    public String version() {
+        return "v1";
+    }
 }
