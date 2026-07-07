@@ -49,4 +49,11 @@ class HelloControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(content().string("pong"));
     }
+
+    @Test
+    void readyShouldReturnReady() throws Exception {
+        mockMvc.perform(get("/ready"))
+                .andExpect(status().isOk())
+                .andExpect(content().string("ready"));
+    }
 }

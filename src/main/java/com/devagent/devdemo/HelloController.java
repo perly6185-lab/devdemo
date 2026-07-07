@@ -32,4 +32,9 @@ public class HelloController {
     public String ping() {
         return "pong";
     }
+
+    @GetMapping("/ready")
+    public String ready() {
+        return "ready";
+    }
 }
