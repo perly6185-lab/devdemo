@@ -18,4 +18,9 @@ public class HelloController {
     public String health() {
         return "OK";
     }
+
+    @GetMapping("/goodbye")
+    public String goodbye() {
+        return "Goodbye from DevAgent Demo!";
+    }
 }
