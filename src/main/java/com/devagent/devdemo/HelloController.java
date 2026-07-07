@@ -27,4 +27,9 @@ public class HelloController {
     public String goodbye() {
         return "Goodbye from DevAgent Demo!";
     }
+
+    @GetMapping("/ping")
+    public String ping() {
+        return "pong";
+    }
 }
