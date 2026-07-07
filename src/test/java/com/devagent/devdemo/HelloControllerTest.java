@@ -42,4 +42,11 @@ class HelloControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(content().string("Goodbye from DevAgent Demo!"));
     }
+
+    @Test
+    void pingShouldReturnPong() throws Exception {
+        mockMvc.perform(get("/ping"))
+                .andExpect(status().isOk())
+                .andExpect(content().string("pong"));
+    }
 }
