@@ -1,1 +1,2 @@
-target/\n*.class\n*.jar\n*.log\n.idea/\n*.iml\n.DS_Store
+target/
+*.class
