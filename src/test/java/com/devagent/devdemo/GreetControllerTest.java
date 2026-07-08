@@ -44,4 +44,19 @@ class GreetControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(content().string("Hola, Ada!"));
     }
+
+    @Test
+    void greetWithBlankNameShouldReturnDefaultGreeting() throws Exception {
+        // /greet?name=%20 — the %20 decodes to a single space, i.e. a blank name.
+        mockMvc.perform(get("/greet").param("name", " "))
+                .andExpect(status().isOk())
+                .andExpect(content().string("Hello!"));
+    }
+
+    @Test
+    void greetWithUnsupportedLangShouldFallBackToEnglish() throws Exception {
+        mockMvc.perform(get("/greet").param("name", "Ada").param("lang", "fr"))
+                .andExpect(status().isOk())
+                .andExpect(content().string("Hello, Ada!"));
+    }
 }

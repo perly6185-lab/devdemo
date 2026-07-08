@@ -42,4 +42,19 @@ class GreetingServiceTest {
     void greetWithSpanishLangAndNoNameReturnsSpanishDefault() {
         assertEquals("¡Hola!", greetingService.greet(null, "es"));
     }
+
+    @Test
+    void greetWithUnsupportedLangFallsBackToEnglish() {
+        assertEquals("Hello, Ada!", greetingService.greet("Ada", "fr"));
+    }
+
+    @Test
+    void greetWithUnsupportedLangAndNoNameFallsBackToEnglishDefault() {
+        assertEquals("Hello!", greetingService.greet(null, "fr"));
+    }
+
+    @Test
+    void greetWithBlankNameAndSpanishLangReturnsSpanishDefault() {
+        assertEquals("¡Hola!", greetingService.greet("   ", "es"));
+    }
 }
