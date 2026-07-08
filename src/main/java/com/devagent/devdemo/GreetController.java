@@ -14,7 +14,8 @@ public class GreetController {
     }
 
     @GetMapping("/greet")
-    public String greet(@RequestParam(required = false) String name) {
-        return greetingService.greet(name);
+    public String greet(@RequestParam(required = false) String name,
+                        @RequestParam(required = false) String lang) {
+        return greetingService.greet(name, lang);
     }
 }
