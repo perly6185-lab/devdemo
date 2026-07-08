@@ -30,4 +30,18 @@ class GreetControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(content().string("Hello!"));
     }
+
+    @Test
+    void greetWithSpanishLangShouldReturnSpanishDefaultGreeting() throws Exception {
+        mockMvc.perform(get("/greet").param("lang", "es"))
+                .andExpect(status().isOk())
+                .andExpect(content().string("¡Hola!"));
+    }
+
+    @Test
+    void greetWithNameAndSpanishLangShouldReturnPersonalizedSpanishGreeting() throws Exception {
+        mockMvc.perform(get("/greet").param("name", "Ada").param("lang", "es"))
+                .andExpect(status().isOk())
+                .andExpect(content().string("Hola, Ada!"));
+    }
 }
