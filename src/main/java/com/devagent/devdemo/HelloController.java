@@ -6,16 +6,21 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class HelloController {
-   @GetMapping("/hello2")
-    public String hello2() {
-        return "Hello from DevAgent Demo!";
+
+    private final GreetingService greetingService;
+
+    public HelloController(GreetingService greetingService) {
+        this.greetingService = greetingService;
     }
+
+    @GetMapping("/hello2")
+    public String hello2() {
+        return greetingService.demoGreeting(null);
+    }
+
     @GetMapping("/hello")
     public String hello(@RequestParam(required = false) String name) {
-        if (name != null) {
-            return "Hello, " + name + "! (from DevAgent Demo)";
-        }
-        return "Hello from DevAgent Demo!";
+        return greetingService.demoGreeting(name);
     }
 
     @GetMapping("/health")
@@ -35,6 +40,6 @@ public class HelloController {
 
     @GetMapping("/hola")
     public String hola() {
-        return "Hola";
+        return greetingService.holaGreeting();
     }
 }

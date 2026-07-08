@@ -38,4 +38,31 @@ public class GreetingService {
         String trimmedName = name.trim();
         return spanish ? "Hola, " + trimmedName + "!" : "Hello, " + trimmedName + "!";
     }
+
+    /**
+     * Builds the legacy "DevAgent Demo" greeting used by the /hello and /hello2
+     * endpoints.
+     *
+     * <p>This intentionally preserves the original endpoint behavior verbatim: a
+     * non-null {@code name} (including an empty string) yields a personalized
+     * greeting, while a null {@code name} yields the generic demo greeting.
+     *
+     * @param name the name to greet; when null the generic demo greeting is used
+     * @return the demo greeting text
+     */
+    public String demoGreeting(String name) {
+        if (name != null) {
+            return "Hello, " + name + "! (from DevAgent Demo)";
+        }
+        return "Hello from DevAgent Demo!";
+    }
+
+    /**
+     * Builds the legacy Spanish greeting used by the /hola endpoint.
+     *
+     * @return the fixed Spanish greeting text
+     */
+    public String holaGreeting() {
+        return "Hola";
+    }
 }
