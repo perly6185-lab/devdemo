@@ -32,10 +32,10 @@ class HelloControllerTest {
     }
 
     @Test
-    void healthShouldReturnOk() throws Exception {
+    void healthShouldReturnUpStatus() throws Exception {
         mockMvc.perform(get("/health"))
                 .andExpect(status().isOk())
-                .andExpect(content().string("OK"));
+                .andExpect(content().json("{\"status\":\"UP\"}"));
     }
 
     @Test
