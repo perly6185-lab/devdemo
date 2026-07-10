@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DevAgent Demo — Landing Page Mockup (Option B)</title>
+<style>
+  :root {
+    --ground: #faf9f7;
+    --surface: #ffffff;
+    --ink: #1c1b22;
+    --muted: #6f6d78;
+    --border: #e6e4df;
+    --accent: #5b5bd6;
+    --accent-2: #8b5cf6;
+    --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    --sans: system-ui, -apple-system, "Segoe UI", sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --ground: #141318;
+      --surface: #1e1d24;
+      --ink: #f0eff4;
+      --muted: #a09eab;
+      --border: #34323d;
+      --accent: #7c7cf0;
+      --accent-2: #a78bfa;
+    }
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: var(--sans);
+    background: var(--ground);
+    color: var(--ink);
+    line-height: 1.6;
+  }
+  .wrap { max-width: 880px; margin: 0 auto; padding: 0 24px; }
+
+  header.site {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 20px 0;
+  }
+  .brand { display: flex; align-items: center; gap: 10px; font-weight: 700; }
+  .brand .glyph {
+    width: 26px; height: 26px; border-radius: 8px;
+    background: linear-gradient(135deg, var(--accent), var(--accent-2));
+    display: inline-block;
+  }
+  .repo-link {
+    font-size: 14px; color: var(--muted); text-decoration: none;
+    border: 1px solid var(--border); border-radius: 8px; padding: 6px 14px;
+  }
+  .repo-link:hover, .repo-link:focus-visible { color: var(--ink); border-color: var(--muted); }
+
+  .hero { text-align: center; padding: 72px 0 56px; }
+  .hero h1 { font-size: clamp(36px, 6vw, 48px); line-height: 1.1; letter-spacing: -0.02em; }
+  .hero h1 .es {
+    background: linear-gradient(100deg, var(--accent), var(--accent-2));
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .hero p { margin: 16px auto 0; max-width: 46ch; color: var(--muted); font-size: 17px; }
+
+  .card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 12px; box-shadow: 0 1px 3px rgb(0 0 0 / .08);
+    padding: 28px;
+  }
+  .card-head {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 20px;
+  }
+  .section-label {
+    font-size: 12px; font-weight: 700; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--muted);
+  }
+  .chip {
+    font-family: var(--mono); font-size: 13px; color: var(--accent);
+    border: 1px solid var(--border); border-radius: 6px; padding: 3px 10px;
+  }
+
+  form.playground .row {
+    display: flex; gap: 28px; flex-wrap: wrap; align-items: flex-end;
+  }
+  .field { flex: 1 1 220px; }
+  .field label, fieldset legend {
+    display: block; font-size: 14px; font-weight: 600; margin-bottom: 8px;
+  }
+  .field input[type="text"] {
+    width: 100%; font: inherit; color: var(--ink);
+    background: var(--ground); border: 1px solid var(--border);
+    border-radius: 8px; padding: 10px 12px;
+  }
+  .field input[type="text"]:focus-visible,
+  .radios input:focus-visible + span,
+  .btn:focus-visible, a:focus-visible {
+    outline: 2px solid var(--accent); outline-offset: 2px;
+  }
+  fieldset { border: 0; flex: 1 1 220px; }
+  .radios { display: flex; gap: 18px; padding: 10px 0; }
+  .radios label { display: flex; align-items: center; gap: 7px; font-size: 15px; cursor: pointer; }
+  .radios input { accent-color: var(--accent); width: 16px; height: 16px; }
+  .btn {
+    font: inherit; font-weight: 600; color: #fff; cursor: pointer;
+    background: linear-gradient(120deg, var(--accent), var(--accent-2));
+    border: 0; border-radius: 8px; padding: 11px 22px;
+    flex: 0 0 auto;
+  }
+  .btn:hover { filter: brightness(1.08); }
+
+  .req-preview {
+    margin-top: 20px; font-family: var(--mono); font-size: 14px;
+    color: var(--muted);
+  }
+  .req-preview code { color: var(--ink); }
+
+  .response { margin-top: 20px; }
+  .response .meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+  .status-ok {
+    font-family: var(--mono); font-size: 12px; color: #1a7f4b;
+    background: rgb(26 127 75 / .1); border-radius: 6px; padding: 2px 8px;
+  }
+  .well {
+    font-family: var(--mono); font-size: 16px;
+    background: var(--ground); border: 1px solid var(--border);
+    border-left: 3px solid var(--accent); border-radius: 8px;
+    padding: 14px 16px;
+  }
+  .hint { margin-top: 16px; font-size: 13px; color: var(--muted); }
+
+  .endpoints { margin: 72px 0 0; }
+  .endpoints > .section-label { display: block; margin-bottom: 16px; }
+  .grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
+  }
+  @media (max-width: 900px) { .grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 600px) { .grid { grid-template-columns: 1fr; } }
+  .ep {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 12px; padding: 18px; display: flex;
+    flex-direction: column; gap: 8px;
+  }
+  .ep .chip { align-self: flex-start; }
+  .ep p { font-size: 14px; color: var(--muted); flex: 1; }
+  .ep a { font-size: 14px; color: var(--accent); text-decoration: none; font-weight: 600; }
+  .ep a:hover { text-decoration: underline; }
+
+  footer.site {
+    margin-top: 88px; padding: 24px 0 40px;
+    border-top: 1px solid var(--border);
+    display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px;
+    font-size: 14px; color: var(--muted);
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="site">
+    <span class="brand"><span class="glyph" aria-hidden="true"></span>DevAgent Demo</span>
+    <a class="repo-link" href="#">GitHub repo ↗</a>
+  </header>
+
+  <main>
+    <section class="hero">
+      <h1>Hello. <span class="es">¡Hola!</span></h1>
+      <p>A tiny Spring Boot greeting API, built end-to-end by agent-driven tasks. Try it right here.</p>
+    </section>
+
+    <section class="card" aria-labelledby="try-label">
+      <div class="card-head">
+        <span class="section-label" id="try-label">Try the API</span>
+        <span class="chip">GET /greet</span>
+      </div>
+      <form class="playground" method="get" action="/greet">
+        <div class="row">
+          <div class="field">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" value="Ada" placeholder="Your name">
+          </div>
+          <fieldset>
+            <legend>Language</legend>
+            <div class="radios">
+              <label><input type="radio" name="lang" value="en" checked><span>English</span></label>
+              <label><input type="radio" name="lang" value="es"><span>Español</span></label>
+            </div>
+          </fieldset>
+          <button class="btn" type="submit">Send greeting →</button>
+        </div>
+      </form>
+      <p class="req-preview">Request preview: <code>GET /greet?name=Ada&amp;lang=en</code></p>
+
+      <!-- Response state (phase-2 target; shown here as static mock) -->
+      <div class="response">
+        <div class="meta">
+          <span class="section-label">Response</span>
+          <span class="status-ok">200 OK</span>
+        </div>
+        <div class="well">Hello, Ada!</div>
+      </div>
+
+      <p class="hint">Tip: leave the name blank or pick an unsupported language to see the graceful fallbacks.</p>
+    </section>
+
+    <section class="endpoints" aria-labelledby="ep-label">
+      <span class="section-label" id="ep-label">All endpoints</span>
+      <div class="grid">
+        <div class="ep"><span class="chip">GET /greet</span><p>Personalized greeting with optional <code>name</code> and <code>lang</code> (en/es).</p><a href="#">Open ↗</a></div>
+        <div class="ep"><span class="chip">GET /hello</span><p>Legacy demo greeting, optionally personalized.</p><a href="#">Open ↗</a></div>
+        <div class="ep"><span class="chip">GET /hola</span><p>Fixed Spanish greeting.</p><a href="#">Open ↗</a></div>
+        <div class="ep"><span class="chip">GET /health</span><p>Liveness check — returns <code>OK</code>.</p><a href="#">Open ↗</a></div>
+        <div class="ep"><span class="chip">GET /ping</span><p>Returns <code>pong</code>.</p><a href="#">Open ↗</a></div>
+        <div class="ep"><span class="chip">GET /goodbye</span><p>Farewell text from the demo.</p><a href="#">Open ↗</a></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site">
+    <span>Spring Boot 3 · Java 17 · built by DevAgent</span>
+    <span>© 2026 DevAgent Demo</span>
+  </footer>
+
+</div>
+</body>
+</html>
