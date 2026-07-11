@@ -14,6 +14,7 @@ A small Spring Boot demo application exposing a handful of HTTP endpoints.
 | GET | `/ping` | Returns `pong`; useful as a liveness check. |
 | GET | `/health` | Returns `OK` to indicate the service is up. |
 | GET | `/healthz` | Returns `{"healthy":true}` as JSON to indicate the service is healthy. |
+| GET | `/time` | Returns the current server time as JSON: `{"epochMillis":<milliseconds since the Unix epoch>}`. |
 
 ## Running the app
 

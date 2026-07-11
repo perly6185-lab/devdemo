@@ -50,6 +50,11 @@ public class HelloController {
         return Map.of("healthy", true);
     }
 
+    @GetMapping("/time")
+    public Map<String, Long> time() {
+        return Map.of("epochMillis", System.currentTimeMillis());
+    }
+
     @GetMapping("/hola")
     public String hola() {
         return greetingService.holaGreeting();

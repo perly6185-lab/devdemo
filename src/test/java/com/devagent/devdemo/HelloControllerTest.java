@@ -71,6 +71,14 @@ class HelloControllerTest {
     }
 
     @Test
+    void timeShouldReturnEpochMillisJson() throws Exception {
+        mockMvc.perform(get("/time"))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andExpect(jsonPath("$.epochMillis").isNumber());
+    }
+
+    @Test
     void holaShouldReturnSpanishGreeting() throws Exception {
         mockMvc.perform(get("/hola"))
                 .andExpect(status().isOk())
