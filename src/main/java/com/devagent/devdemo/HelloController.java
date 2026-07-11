@@ -55,6 +55,11 @@ public class HelloController {
         return Map.of("epochMillis", System.currentTimeMillis());
     }
 
+    @GetMapping("/version")
+    public Map<String, String> version() {
+        return Map.of("version", "1.0.0");
+    }
+
     @GetMapping("/hola")
     public String hola() {
         return greetingService.holaGreeting();
