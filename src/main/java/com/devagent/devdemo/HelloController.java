@@ -60,6 +60,11 @@ public class HelloController {
         return Map.of("version", "1.0.0");
     }
 
+    @GetMapping("/whoami")
+    public Map<String, String> whoami() {
+        return Map.of("service", "devdemo");
+    }
+
     @GetMapping("/hola")
     public String hola() {
         return greetingService.holaGreeting();

@@ -87,6 +87,14 @@ class HelloControllerTest {
     }
 
     @Test
+    void whoamiShouldReturnServiceJson() throws Exception {
+        mockMvc.perform(get("/whoami"))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andExpect(jsonPath("$.service").value("devdemo"));
+    }
+
+    @Test
     void holaShouldReturnSpanishGreeting() throws Exception {
         mockMvc.perform(get("/hola"))
                 .andExpect(status().isOk())
