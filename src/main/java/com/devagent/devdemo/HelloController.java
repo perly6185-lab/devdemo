@@ -45,6 +45,11 @@ public class HelloController {
         return Map.of("status", "ok");
     }
 
+    @GetMapping("/healthz")
+    public Map<String, Boolean> healthz() {
+        return Map.of("healthy", true);
+    }
+
     @GetMapping("/hola")
     public String hola() {
         return greetingService.holaGreeting();
