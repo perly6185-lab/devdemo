@@ -13,6 +13,7 @@ A small Spring Boot demo application exposing a handful of HTTP endpoints.
 | GET | `/goodbye` | Returns a farewell message. |
 | GET | `/ping` | Returns `pong`; useful as a liveness check. |
 | GET | `/health` | Returns `OK` to indicate the service is up. |
+| GET | `/uptime` | Returns JSON with the whole seconds elapsed since the app started, e.g. `{"uptimeSeconds": 42}`. |
 
 ## Running the app
 

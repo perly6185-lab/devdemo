@@ -1,5 +1,7 @@
 package com.devagent.devdemo;
 
+import java.time.Duration;
+import java.time.Instant;
 import java.util.Map;
 
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,6 +12,8 @@ import org.springframework.web.bind.annotation.RestController;
 public class HelloController {
 
     private final GreetingService greetingService;
+
+    private final Instant startTime = Instant.now();
 
     public HelloController(GreetingService greetingService) {
         this.greetingService = greetingService;
@@ -43,6 +47,11 @@ public class HelloController {
     @GetMapping("/status")
     public Map<String, String> status() {
         return Map.of("status", "ok");
+    }
+
+    @GetMapping("/uptime")
+    public Map<String, Long> uptime() {
+        return Map.of("uptimeSeconds", Duration.between(startTime, Instant.now()).getSeconds());
     }
 
     @GetMapping("/hola")

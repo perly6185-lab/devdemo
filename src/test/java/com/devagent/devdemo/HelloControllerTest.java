@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Import;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
+import static org.hamcrest.Matchers.greaterThanOrEqualTo;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -60,6 +61,15 @@ class HelloControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("$.status").value("ok"));
+    }
+
+    @Test
+    void uptimeShouldReturnNonNegativeSeconds() throws Exception {
+        mockMvc.perform(get("/uptime"))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andExpect(jsonPath("$.uptimeSeconds").isNumber())
+                .andExpect(jsonPath("$.uptimeSeconds", greaterThanOrEqualTo(0)));
     }
 
     @Test
