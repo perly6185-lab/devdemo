@@ -40,6 +40,11 @@ public class HelloController {
         return "pong";
     }
 
+    @GetMapping("/status")
+    public Map<String, String> status() {
+        return Map.of("status", "ok");
+    }
+
     @GetMapping("/hola")
     public String hola() {
         return greetingService.holaGreeting();
