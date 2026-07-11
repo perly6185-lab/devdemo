@@ -1,5 +1,7 @@
 package com.devagent.devdemo;
 
+import java.util.Map;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -36,6 +38,11 @@ public class HelloController {
     @GetMapping("/ping")
     public String ping() {
         return "pong";
+    }
+
+    @GetMapping("/ready")
+    public Map<String, Boolean> ready() {
+        return Map.of("ready", true);
     }
 
     @GetMapping("/hola")
