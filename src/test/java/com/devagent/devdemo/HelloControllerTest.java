@@ -63,6 +63,14 @@ class HelloControllerTest {
     }
 
     @Test
+    void healthzShouldReturnHealthyJson() throws Exception {
+        mockMvc.perform(get("/healthz"))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andExpect(jsonPath("$.healthy").value(true));
+    }
+
+    @Test
     void holaShouldReturnSpanishGreeting() throws Exception {
         mockMvc.perform(get("/hola"))
                 .andExpect(status().isOk())
