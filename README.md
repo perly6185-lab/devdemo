@@ -12,7 +12,7 @@ A small Spring Boot demo application exposing a handful of HTTP endpoints.
 | GET | `/hola` | Returns a fixed Spanish greeting (`Hola`). |
 | GET | `/goodbye` | Returns a farewell message. |
 | GET | `/ping` | Returns `pong`; useful as a liveness check. |
-| GET | `/health` | Returns `OK` to indicate the service is up. |
+| GET | `/health` | Returns `{"status":"healthy"}` to indicate the service is up. |
 
 ## Running the app
 

@@ -34,10 +34,11 @@ class HelloControllerTest {
     }
 
     @Test
-    void healthShouldReturnUpStatus() throws Exception {
+    void healthShouldReturnHealthyStatus() throws Exception {
         mockMvc.perform(get("/health"))
                 .andExpect(status().isOk())
-                .andExpect(content().json("{\"status\":\"UP\"}"));
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andExpect(jsonPath("$.status").value("healthy"));
     }
 
     @Test
