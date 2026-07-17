@@ -25,3 +25,7 @@ mvn spring-boot:run
 ```
 
 The server starts on port 8080 by default.
+
+## Health notes
+
+See NOTES.md for a component map.
